@@ -5,9 +5,9 @@ import urllib.request
 import os
 from selenium.webdriver.common.by import By
 
-search = "lion"   # 이미지 검색어
+search = "tiger animal real"   # 이미지 검색어
 count = 1000       # 크롤링할 이미지 개수
-save_dir = "/Users/bagseonghyeon/Desktop/study/크롤링/lion/dataset"  # 이미지를 저장할 폴더 경로
+save_dir = "/Users/bagseonghyeon/Desktop/study/크롤링/lion/data_naver"  # 이미지를 저장할 폴더 경로
 
 driver = webdriver.Chrome()  
 driver.get("https://www.google.com/imghp?hl=ko&tab=wi") 
@@ -46,9 +46,10 @@ if not os.path.exists(save_dir):
 # 이미지 다운로드 및 저장
 for i, image in enumerate(images[:count], 1):
     try: 
-        image.click()  # 이미지 클릭하여 확대
-        time.sleep(1)
-        imgUrl = driver.find_element(By.CSS_SELECTOR,".sFlh5c.pT0Scc.iPVvYb").get_attribute("src")  # 이미지 URL 가져오기
+        # image.click()  # 이미지 클릭하여 확대
+        # # time.sleep(1)
+        # imgUrl = driver.find_element(By.CSS_SELECTOR,".sFlh5c.pT0Scc.iPVvYb").get_attribute("src")  # 이미지 URL 가져오기
+        imgUrl = image.get_attribute("src")  # 이미지 URL 가져오기
         filename = os.path.join(save_dir, f"{search}_{i}.jpg")  # 이미지 저장 경로 설정
         urllib.request.urlretrieve(imgUrl, filename)  # 이미지 다운로드
         print(f"{i}번 이미지 다운로드 완료")
@@ -56,3 +57,4 @@ for i, image in enumerate(images[:count], 1):
         print(f"{i}번 이미지 다운로드 실패:", e)
 # 웹 드라이버 종료
 driver.quit()
+
