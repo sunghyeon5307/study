@@ -7,13 +7,29 @@ from selenium.webdriver.common.by import By
 
 search = "cat"   # 이미지 검색어
 count = 1000       # 크롤링할 이미지 개수
-save_dir = "/Users/bagseonghyeon/Desktop/zz"  # 이미지를 저장할 폴더 경로
+save_dir = "/Users/bagseonghyeon/Desktop/study/크롤링/cat_dog/cat_data"  # 이미지를 저장할 폴더 경로
 
 driver = webdriver.Chrome()  
 driver.get("https://www.google.com/imghp?hl=ko&tab=wi") 
 elem = driver.find_element(By.NAME, "q") 
 elem.send_keys(search)
 elem.send_keys(Keys.RETURN) 
+
+# 페이지 스크롤하여 추가 이미지 로드
+# SCROLL_PAUSE_TIME = 1
+# last_height = driver.execute_script("return document.body.scrollHeight")
+# while True:
+#     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+#     time.sleep(SCROLL_PAUSE_TIME)
+#     new_height = driver.execute_script("return document.body.scrollHeight")
+#     if new_height == last_height:
+#         try:
+#             driver.find_element(By.CSS_SELECTOR, ".mye4qd").click()  # '더보기' 버튼 클릭하여 추가 이미지 로드
+#             time.sleep(1)
+#         except:
+#             print('여기서 막혔습니다')
+#             break
+#     last_height = new_height
 
 # 페이지 스크롤하여 추가 이미지 로드
 SCROLL_PAUSE_TIME = 1
@@ -24,16 +40,23 @@ while True:
     new_height = driver.execute_script("return document.body.scrollHeight")
     if new_height == last_height:
         try:
-            driver.find_element(By.CSS_SELECTOR, ".mye4qd").click()  # '더보기' 버튼 클릭하여 추가 이미지 로드
-            time.sleep(1)
+            load_more_button = driver.find_element(By.CSS_SELECTOR, ".mye4qd")
+            if load_more_button.is_displayed():
+                load_more_button.click()  # '더보기' 버튼 클릭하여 추가 이미지 로드
+                time.sleep(1)
+            else:
+                print('더 이상 "더보기" 버튼이 없습니다.')
+                break
         except:
             print('여기서 막혔습니다')
             break
     last_height = new_height
+
+
 time.sleep(1)
 # 이미지 검색 결과에서 이미지 요소 찾기
 try:
-    images = driver.find_elements(By.CSS_SELECTOR, ".YQ4gaf")
+    images = driver.find_elements(By.CSS_SELECTOR, ".rg_i.Q4LuWd")
 except:
     print('이번엔 여기서 오류')
 
