@@ -5,9 +5,9 @@ import urllib.request
 import os
 from selenium.webdriver.common.by import By
 
-search = "tiger animal real"   # 이미지 검색어
+search = "dog image"   # 이미지 검색어
 count = 1000       # 크롤링할 이미지 개수
-save_dir = "/Users/bagseonghyeon/Desktop/study/크롤링/lion/data"  # 이미지를 저장할 폴더 경로
+save_dir = "/Users/bagseonghyeon/Desktop/study/크롤링/cat_dog/dog_data"  # 이미지를 저장할 폴더 경로
 
 driver = webdriver.Chrome()  
 driver.get("https://www.google.com/imghp?hl=ko&tab=wi") 
