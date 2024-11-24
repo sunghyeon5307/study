@@ -1,6 +1,5 @@
 #include <stdio.h>
-int main()
-{
+int main(){
 	int arr[50]={};
 	int a, b, j, k;
 	scanf("%d", &a);
@@ -22,4 +21,5 @@ int main()
 	}	
 	return 0;
 }
+
 
