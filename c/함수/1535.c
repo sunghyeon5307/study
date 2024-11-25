@@ -1,27 +1,19 @@
 #include <stdio.h>
 
-int n, d[110];
-
-int f()
-{
-	int ans, mx=0;
-	while(n--)
-	{
-		if(d[n]>=mx)
-		{
-			mx = d[n];
-			ans = n + 1;
-		}
+int f() {
+	int n, a[10], max=0, index=0;
+	scanf("%d", &n);
+	for(int i=0; i<n; i++){
+		scanf("%d", &a[i]);
+		if(max<a[i]){
+			max=a[i];
+			index=i+1;
+		}	
 	}
-	return ans;
+	return index;
 }
-int main()
+int main() 
 {
-  scanf("%d", &n);
-
-  for(int i=0; i<n; i++)
-    scanf("%d", &d[i]);
-
-  printf("%d", f());
-  return 0;
+	printf("%d", f());
+	return 0;
 }
