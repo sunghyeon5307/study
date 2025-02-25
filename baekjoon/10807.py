@@ -1,5 +1,0 @@
-n=int(input())
-v=list(map(int,input().split()))
-num=int(input())
-count=v.count(num)
-print(count)
