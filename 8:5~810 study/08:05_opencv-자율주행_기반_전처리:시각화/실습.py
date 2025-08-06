@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = 'img/냠도라에몽.jpg'
+img = 'img/기운도라에몽.jpg'
 img = cv2.imread(img)
 
 # 1. 이미지 읽고 출력
@@ -61,9 +61,8 @@ contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPL
 img_contour = img.copy()
 cv2.drawContours(img_contour, contours, -1, (0, 255, 0), 2)
 
+cv2. imwrite('Contours.jpg', img_contour)
 cv2.imshow('Contours', img_contour)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
 
 
 # 7. 도형 및 텍스트 그리기
@@ -85,7 +84,6 @@ while True:
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
